@@ -23,8 +23,9 @@ function AddImage({ imageChanged, uploadImage }) {
     // Otherwise, make the call:
     try {
       const imageInfo = await Camera.getPhoto({
-        quality: 90,
+        quality: 100,
         allowEditing: false,
+        width : 800,
         resultType: CameraResultType.DataUrl,
         source: CameraSource.Prompt
       });
