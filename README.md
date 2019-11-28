@@ -1,8 +1,10 @@
-## Ionic Custom Firbase Storage Hook 
+## Ionic Custom Firebase Storage Hook 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Sample app integrating firebase with a react application using react hooks api and [React Firebase Hooks](https://github.com/CSFrequency/react-firebase-hooks) - A set of reusable [react hooks](https://reactjs.org/docs/hooks-intro.html) for [Firebase](https://firebase.google.com/docs/web/setup?authuser=0).
+
+**We also have built our own custom firebase storage file upload hook**, [jump directly to source code](https://github.com/aaronksaunders/react-custom-fb-upload-hooks/blob/master/src/hooks/use-firebase-upload.js)
 
 <p align="center">
 <img src="./custom hook 1.png"  width='40%'>
@@ -42,6 +44,10 @@ const onSave = async () => {
     clear();
 };
 ```
+
+## Uploading a File to Firebase Storage
+- [See Code](https://github.com/aaronksaunders/react-custom-fb-upload-hooks/blob/master/src/hooks/use-firebase-upload.js)
+- **working on more detailed blog post**
 
 ## Deleting A Specific Thing
 
