@@ -66,7 +66,9 @@ function Home() {
         ) : (
           <IonCard>
             <IonCardHeader>
+              <div style={{textAlign:'center'}}>
               <h4>Firebase Image Upload Hook</h4>
+              </div>
             </IonCardHeader>
             <IonCardContent>
               <AddImage
