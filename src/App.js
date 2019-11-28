@@ -30,6 +30,8 @@ import firebase from "firebase/app";
 import Home from "./Home";
 import Login from "./Login";
 
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
 //
 // initialize firebase using properties on firebase console
 // https://firebase.google.com/docs/web/setup?authuser=0
@@ -81,6 +83,9 @@ function App() {
    * called at startup to see if user is logged in or not
    */
   useEffect(() => {
+
+    defineCustomElements(window);
+    
     if (authCheckDone) return;
     doAuthCheck();
   });

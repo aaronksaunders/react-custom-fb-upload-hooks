@@ -76,6 +76,18 @@ you need to remove the object from firebase storage first...
 
 ## Setting Up For Capacitor
 
+### Using Capacitor Camera Plugin
+I used the Camera Plugin to address issues I was running into related to orientation when running the application on my iOS device. 
+
+```javascript
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+```
+Then later in the startup process you will need to call
+```javascript
+defineCustomElements(window);
+```    
+See `App.js` for additional details
+
 ### Add Capacitor (https://capacitor.ionicframework.com) to Project:
 
 ```

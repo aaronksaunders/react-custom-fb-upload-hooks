@@ -1063,6 +1063,11 @@
     ionicons "^4.6.3"
     tslib "^1.10.0"
 
+"@ionic/pwa-elements@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@ionic/pwa-elements/-/pwa-elements-1.4.1.tgz#ac8798dc23e38040885a30e6f0c5b485fe87c320"
+  integrity sha512-rGSv+aLb+z9zkjVn1KSfvNDRGBvg2T2KDCYYAMgdNLTUXjq69kphN4dvvnUpx7xtubdjMmKp5FryhqdlJTWLow==
+
 "@ionic/react-router@^4.9.0-rc.2":
   version "4.9.0-rc.2"
   resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-4.9.0-rc.2.tgz#217a47ca7e4acb36d7686066b54fdf3ffc65de52"

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import "../App.css";
-import {
-  IonButton,
-  IonIcon
-} from "@ionic/react";
+import { IonButton, IonIcon } from "@ionic/react";
 import { trash, camera, cloudUpload } from "ionicons/icons";
+
+import {
+  Plugins,
+  CameraSource,
+  CameraResultType
+} from "@capacitor/core";
+const { Camera, Device } = Plugins;
 /**
  *
  * @param {*} param0
@@ -12,14 +16,36 @@ import { trash, camera, cloudUpload } from "ionicons/icons";
 function AddImage({ imageChanged, uploadImage }) {
   const [imageThumb, setImageThumb] = useState("");
 
-  // FILE IMAGE STUFF
   /**
-   * used to fake a click event on the file upload input element
+   * using Native Plugin
    */
-  let openFileDialog = () => {
-    document.getElementById("file-upload").value = "";
-    document.getElementById("file-upload").click();
+  let takePicture = async () => {
+    // Otherwise, make the call:
+    try {
+      const imageInfo = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Prompt
+      });
+      // image.base64_data will contain the base64 encoded result as a JPEG,
+      // with the data-uri prefix added
+      let imagaData = {
+        dataUrl: imageInfo.dataUrl,
+        format: imageInfo.format,
+        fileName: imageInfo.webPath || Date.now() + ".jpeg"
+      };
+      imageChanged(imagaData);
+      setImageThumb(imagaData.dataUrl);
+    } catch (e) {
+      console.log("error", e);
+      setImageThumb("");
+      imageChanged(null);
+      alert("Sorry, Camera API not supported");
+    }
   };
+
+
   /**
    * clear local value tracking the selected image and emit
    * and event to the parent to indicate a change
@@ -28,58 +54,23 @@ function AddImage({ imageChanged, uploadImage }) {
     setImageThumb("");
     imageChanged({});
   };
-  /**
-   * this is called when the user selects a file from the
-   * opened dialog
-   */
-  let handleImageChanged = e => {
-    const file = e.target.files[0];
-    if (!file.type.includes("image/")) {
-      alert("Please select an image file");
-      return;
-    }
-    if (typeof FileReader === "function") {
-      const reader = new FileReader();
-      reader.onload = event => {
-        let imagaData = {
-          dataUrl: event.target.result,
-          format: file.type.split("/")[1],
-          fileName: file.name
-        };
-        imageChanged(imagaData);
-        setImageThumb(imagaData.dataUrl);
-      };
-
-      reader.onerror = _error => {
-        setImageThumb("");
-        imageChanged(null);
-        console.log(_error);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setImageThumb("");
-      imageChanged(null);
-      alert("Sorry, FileReader API not supported");
-    }
-  };
+ 
 
   return (
     <div padding>
       {imageThumb && (
         <div className="pic-wrapper">
           <div className="pic">
-            <img src={imageThumb} alt={""} />
+            <img
+              src={imageThumb}
+              alt={""}
+              style={{ "image-orientation": "from-image" }}
+            />
           </div>
         </div>
       )}
       <div className="btn-wrapper">
-        <input
-          type="file"
-          id="file-upload"
-          style={{ display: "none" }}
-          onChange={handleImageChanged}
-        />
-        <IonButton onClick={openFileDialog}>
+        <IonButton onClick={takePicture}>
           <IonIcon slot="icon-only" icon={camera}></IonIcon>
         </IonButton>
         <IonButton onClick={uploadImage} color="secondary">
