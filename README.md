@@ -86,7 +86,9 @@ Then later in the startup process you will need to call
 ```javascript
 defineCustomElements(window);
 ```    
-See `App.js` for additional details
+See `App.js` for additional details.
+
+>Known issue with file input - https://github.com/ionic-team/capacitor/pull/1856
 
 ### Add Capacitor (https://capacitor.ionicframework.com) to Project:
 
