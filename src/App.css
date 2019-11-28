@@ -1,0 +1,49 @@
+
+
+
+.thing-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.thing-sub-title {
+  color: black;
+  font-size: smaller;
+}
+
+.thing-id {
+  color: gray;
+  font-weight: bold;
+}
+
+.thing-wrapper > div {
+  padding: 4px;
+  padding-top: 8px;
+}
+
+.thing-wrapper {
+  border-bottom: 1px solid lightgrey;
+}
+body {
+  padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
+    env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+}
+
+.pic-wrapper {
+  padding: 8px;
+  background-color: rgb(220, 222, 222);
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+.btn-wrapper {
+  padding: 8px;
+  padding-top: 16px;
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+.pic {
+  width: 200px;
+  object-fit: contain;
+}
